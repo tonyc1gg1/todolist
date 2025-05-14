@@ -5,6 +5,11 @@ from django.contrib.auth import login, logout, authenticate
 
 
 # Create your views here.
+def user_logout(request):
+    logout(request)
+    return redirect("todolist")
+
+
 def user_login(request):
     message = ""
     username = ""

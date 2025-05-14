@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TodoList</title>
-    <style>
-        body{
-            text-align: center;
-        }
-
-        .card{
-            background-color: antiquewhite;
-            width: 600px;
-            margin: 12px auto;
-            
-        }
-    </style>
-</head>
-<body>
-    {{user.username}}
-    {{user.email}}
-    
+{% extends "base.html" %}
+{% block title %}
+代辦事項
+{% endblock %}
+{% block content %}
     <h1>代辦事項</h1>
     <hr>
     {% for todo in todos %}
@@ -38,5 +20,4 @@
         <hr>
 
     {% endfor %}
-</body>
-</html>
+{% endblock %}
