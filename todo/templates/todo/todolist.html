@@ -17,16 +17,24 @@
 
 {% for todo in todos %}
 <small>{{todo.created}}</small>
-    <h1>{{todo.id}}</h1>
     <h2>
-        <a href="{% url 'viewtodo' todo.id %}">{{todo.title}}</a>
+        <a href="{% url 'viewtodo' todo.id %}">
+            {% if todo.important %}
+            <span style="color: red;">(重要)</span>
+            {% endif %}
+            {{todo.title}}</a>
     </h2>
     {% if todo.text %}
-    <li>{{todo.text}}</li>
+    <li>{{todo.text|linebreaks}}</li>
     {% endif %}
-    {% if todo.important %}
-    <p style="color: red;">重要</p>
+    
+    {% if todo.date_completed %}
+    <small style="color: rgb(255, 113, 47);">完成時間:{{todo.date_completed}}</small>
     {% endif %}
+    <p>
+        <a href="{% url 'viewtodo' todo.id %}">更新</a>
+        <a href="{% url 'deletetodo' todo.id %}" onclick="return confirm('確定是否刪除?!')">刪除</a>
+    </p>
     <hr>
 {% endfor %}
 {% endblock %}
