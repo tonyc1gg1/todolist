@@ -3,21 +3,30 @@
 代辦事項
 {% endblock %}
 {% block content %}
-    <h1>代辦事項</h1>
-    <hr>
-    {% for todo in todos %}
-    <small>{{todo.created}}</small>
-        <h1>{{todo.id}}</h1>
-        <h2>
-            <a href="{% url 'viewtodo' todo.id %}">{{todo.title}}</a>
-        </h2>
-        {% if todo.text %}
-        <li>{{todo.text}}</li>
-        {% endif %}
-        {% if todo.important %}
-        <p style="color: red;">重要</p>
-        {% endif %}
-        <hr>
+<h1>代辦事項</h1>
+<hr>
 
-    {% endfor %}
+{% if not todos %}
+<h2 style="color: red;">請先登入或註冊.
+    <br>
+    <a href="{% url 'login' %}">登入</a>&nbsp;
+    <a href="{% url 'register' %}">註冊</a>
+</h2>
+
+{% endif %}
+
+{% for todo in todos %}
+<small>{{todo.created}}</small>
+    <h1>{{todo.id}}</h1>
+    <h2>
+        <a href="{% url 'viewtodo' todo.id %}">{{todo.title}}</a>
+    </h2>
+    {% if todo.text %}
+    <li>{{todo.text}}</li>
+    {% endif %}
+    {% if todo.important %}
+    <p style="color: red;">重要</p>
+    {% endif %}
+    <hr>
+{% endfor %}
 {% endblock %}
